@@ -2,10 +2,13 @@
   "expo": {
     "name": "Futebol em Foco",
     "slug": "futebol-em-foco",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "android": {"package": "com.futebolemfoco.app", "permissions": ["CAMERA", "RECORD_AUDIO", "READ_MEDIA_VIDEO"]},
-    "plugins": [["expo-image-picker", {"photosPermission": "Permita selecionar vídeos de treinos para organizar os lances no dispositivo.", "cameraPermission": "Permita gravar treinos quando a gravação for implementada.", "microphonePermission": "Permita gravar áudio junto ao vídeo, se necessário."}]]
+    "plugins": [
+      ["expo-image-picker", {"photosPermission": "Permita selecionar vídeos de treinos para organizar os lances no dispositivo."}],
+      ["expo-camera", {"cameraPermission": "Permita gravar treinos no dispositivo.", "microphonePermission": "Permita gravar áudio junto ao vídeo."}]
+    ]
   }
 }

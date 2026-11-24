@@ -1,28 +1,25 @@
 # Roadmap
 
-## Fase 0 — Base inicial
-- [x] Estrutura Expo/TypeScript e ecrãs iniciais em português.
-- [x] Importação de um vídeo e associação provisória ao atleta.
-- [ ] Validar compilação e importação num dispositivo Android.
+## Entregue — MVP local-first
 
-## Fase 1 — Biblioteca confiável
-- [ ] Persistir atletas, sessões, vídeos e marcadores localmente (SQLite).
-- [ ] Criar, editar e apagar atleta/sessão e atribuir vários vídeos.
-- [ ] Permitir apagar originais e derivados, com confirmação clara.
-- [ ] Criar fluxo de gravação Android e gerir armazenamento/permissões.
+- [x] Estrutura Expo/TypeScript e navegação em português: Início, Vídeos, Atletas e Análise.
+- [x] CRUD inicial local de atletas e sessões de treino/jogo.
+- [x] Importação e gravação Android com cópia local privada.
+- [x] Persistência de atletas, sessões, vídeos, clipes e observações.
+- [x] Reprodução e marcação manual de início/fim.
+- [x] Consentimento, privacidade e exclusão com confirmação.
 
-## Fase 2 — Lances
-- [ ] Marcar início/fim de um lance manualmente na linha temporal.
-- [ ] Recortar/exportar clipe com áudio e orientação preservados.
-- [ ] Gerar compilação de destaques escolhidos pelo utilizador.
+## Próxima fase — mídia nativa
 
-## Fase 3 — Apoio à análise
-- [ ] Medir movimento aproximado após calibração da câmara/campo.
-- [ ] Explorar detecção de eventos em amostras consentidas, primeiro em lote e no dispositivo.
-- [ ] Exibir confiança, limitações e correção manual de cada detecção.
-- [ ] Resumir participação e ações com bola apenas quando observáveis; exigir revisão humana.
+- [ ] Validar codecs, rotação, áudio, duração e armazenamento em dispositivos Android reais.
+- [ ] Recortar fisicamente um clipe preservando orientação e sincronização de áudio.
+- [ ] Renomear o arquivo derivado e exibir miniatura/duração do clipe.
+- [ ] Gerar uma compilação local apenas com os clipes escolhidos.
+- [ ] Exportar/partilhar somente após confirmação e aviso sobre pessoas no vídeo.
 
-## Fase 4 — Partilha sob controlo
-- [ ] Exportar clipe escolhido, com confirmação e aviso de privacidade.
-- [ ] Avaliar partilha familiar opcional sem tornar a nuvem obrigatória.
-- [ ] Documentar retenção, revogação de consentimento e eliminação.
+## Futuro — apoio à análise
+
+- [ ] Explorar detecção local em amostras consentidas e validadas.
+- [ ] Exibir qualquer sugestão como estimativa, com confiança, confirmar/editar/rejeitar.
+- [ ] Medir movimento apenas após calibração e sem prometer precisão tática.
+- [ ] Definir retenção, revogação de consentimento e eventual armazenamento opcional.
