@@ -5,3 +5,5 @@ web-build/
 *.jks
 *.keystore
 .env*
+android/
+*.apk

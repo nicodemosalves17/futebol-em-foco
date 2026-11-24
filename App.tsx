@@ -133,7 +133,7 @@ export default function App() {
 
   if (!ready) return <SafeAreaView style={styles.safe}><View style={styles.loading}><Text style={styles.brand}>FUTEBOL EM FOCO</Text><Text style={styles.muted}>A abrir a biblioteca local…</Text></View></SafeAreaView>;
   return <SafeAreaView style={styles.safe}>
-    <StatusBar barStyle="dark-content" backgroundColor={colors.bg} />
+    <StatusBar barStyle="dark-content" />
     <View style={styles.header}><View><Text style={styles.brand}>FUTEBOL EM FOCO</Text><Text style={styles.greeting}>{tab === 'Início' ? 'O jogo em detalhe.' : tab}</Text></View><View style={styles.avatar}><Text style={styles.avatarText}>⚽</Text></View></View>
     <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
       {tab === 'Início' && <Home onImport={importVideo} onRecord={startRecording} onAthlete={openAthleteModal} onSession={openSessionModal} videoCount={videoCount} athleteCount={data.athletes.length} clipCount={clipCount} recentVideos={recentVideos} onReview={(video) => { setSelectedVideo(video); setTab('Vídeos'); }} />}

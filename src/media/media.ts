@@ -1,4 +1,4 @@
-import * as FileSystem from 'expo-file-system';
+import * as FileSystem from 'expo-file-system/legacy';
 
 export function formatDuration(durationMs?: number): string {
   if (!durationMs || durationMs < 0) return 'duração não disponível';

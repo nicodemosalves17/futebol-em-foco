@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { AVPlaybackStatus, ResizeMode, Video } from 'expo-av';
+import { useVideoPlayer, VideoView } from 'expo-video';
 import { VideoRecord } from '../types/models';
 import { formatDuration } from '../media/media';
 
@@ -10,22 +10,21 @@ type Props = {
 };
 
 export default function VideoPlayer({ video, onSaveClip }: Props) {
-  const player = useRef<Video>(null);
+  const player = useVideoPlayer(video.uri, (instance) => { instance.loop = false; });
   const [position, setPosition] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [start, setStart] = useState<number | null>(null);
   const [end, setEnd] = useState<number | null>(null);
 
-  function statusUpdate(status: AVPlaybackStatus) {
-    if (status.isLoaded) {
-      setPosition(status.positionMillis);
-      setPlaying(status.isPlaying);
-    }
-  }
+  useEffect(() => {
+    const timeSubscription = player.addListener('timeUpdate', ({ currentTime }) => setPosition(currentTime * 1000));
+    const statusSubscription = player.addListener('statusChange', ({ status }) => setPlaying(status === 'readyToPlay'));
+    return () => { timeSubscription.remove(); statusSubscription.remove(); };
+  }, [player]);
 
   async function togglePlayback() {
-    if (!player.current) return;
-    if (playing) await player.current.pauseAsync(); else await player.current.playAsync();
+    if (playing) player.pause(); else player.play();
+    setPlaying(!playing);
   }
 
   function saveClip() {
@@ -38,7 +37,7 @@ export default function VideoPlayer({ video, onSaveClip }: Props) {
   }
 
   return <View style={styles.container}>
-    <Video ref={player} source={{ uri: video.uri }} style={styles.video} resizeMode={ResizeMode.CONTAIN} useNativeControls onPlaybackStatusUpdate={statusUpdate} />
+    <VideoView player={player} style={styles.video} contentFit="contain" nativeControls />
     <View style={styles.timeline}><Text style={styles.time}>{formatDuration(position)} / {formatDuration(video.durationMs)}</Text><Text style={styles.local}>REVISÃO MANUAL</Text></View>
     <View style={styles.actions}>
       <TouchableOpacity style={styles.button} onPress={togglePlayback}><Text style={styles.buttonText}>{playing ? 'Pausar' : 'Reproduzir'}</Text></TouchableOpacity>
