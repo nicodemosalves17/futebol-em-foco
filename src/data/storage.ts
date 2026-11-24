@@ -14,6 +14,7 @@ export async function loadAppData(): Promise<AppData> {
       videos: parsed.videos ?? [],
       clips: parsed.clips ?? [],
       observations: parsed.observations ?? [],
+      analysisReports: parsed.analysisReports ?? [],
     };
   } catch {
     return emptyAppData;

@@ -47,14 +47,59 @@ export type Observation = {
   createdAt: string;
 };
 
+export type AnalysisStatus = 'idle' | 'processing' | 'completed' | 'cancelled' | 'failed';
+export type AnalysisConclusion = 'observado' | 'estimado' | 'não determinável';
+export type AnalysisOrigin = 'automático' | 'interpretação';
+export type ReviewStatus = 'pendente' | 'confirmado' | 'corrigido' | 'rejeitado';
+
+export type AnalysisEvidence = {
+  id: string;
+  startMs: number;
+  endMs: number;
+  description: string;
+};
+
+export type AnalysisFinding = {
+  id: string;
+  reportId: string;
+  videoId: string;
+  athleteId: string;
+  sessionId: string;
+  category: 'momento sugerido' | 'ação observável' | 'movimentação' | 'participação' | 'hipótese de posição' | 'limitação';
+  text: string;
+  evidence: AnalysisEvidence[];
+  confidence?: number;
+  conclusion: AnalysisConclusion;
+  origin: AnalysisOrigin;
+  review: ReviewStatus;
+  createdAt: string;
+};
+
+export type AnalysisReport = {
+  id: string;
+  videoId: string;
+  athleteId: string;
+  sessionId: string;
+  status: AnalysisStatus;
+  progress: number;
+  engine: string;
+  createdAt: string;
+  updatedAt: string;
+  findings: AnalysisFinding[];
+  limitations: string[];
+  message?: string;
+  cancelRequested?: boolean;
+};
+
 export type AppData = {
   athletes: Athlete[];
   sessions: Session[];
   videos: VideoRecord[];
   clips: Clip[];
   observations: Observation[];
+  analysisReports: AnalysisReport[];
 };
 
 export const emptyAppData: AppData = {
-  athletes: [], sessions: [], videos: [], clips: [], observations: [],
+  athletes: [], sessions: [], videos: [], clips: [], observations: [], analysisReports: [],
 };
