@@ -14,7 +14,12 @@ export async function loadAppData(): Promise<AppData> {
       videos: parsed.videos ?? [],
       clips: parsed.clips ?? [],
       observations: parsed.observations ?? [],
-      analysisReports: parsed.analysisReports ?? [],
+      analysisReports: (parsed.analysisReports ?? []).map((report) => ({
+        ...report,
+        trackingStatus: report.trackingStatus ?? 'não iniciado',
+        findings: report.findings ?? [],
+        limitations: report.limitations ?? [],
+      })),
     };
   } catch {
     return emptyAppData;

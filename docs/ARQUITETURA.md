@@ -10,7 +10,9 @@ A interface permanece em `App.tsx`, os modelos ficam em `src/types/models.ts`, a
 
 `AsyncStorage` guarda metadados serializáveis: atletas, sessões, registros de vídeo, clipes, observações e `analysisReports`. Cada relatório e cada futuro `AnalysisFinding` possui `videoId`, `athleteId` e `sessionId`. Vídeos não são convertidos para base64 nem mantidos em memória: ao importar ou gravar, o arquivo é copiado para `FileSystem.documentDirectory/videos/` e a URI local é registrada.
 
-Os tipos de análise já reservam `AnalysisEvidence` com `startMs` e `endMs`, `confidence`, `conclusion` (`observado`, `estimado` ou `não determinável`), `origin` (`automático` ou `interpretação`) e `review` (`pendente`, `confirmado`, `corrigido` ou `rejeitado`). A UI omite qualquer conclusão sem evidência temporal. Hoje a engine retorna zero achados.
+Antes de qualquer análise, `AthleteSelector` permite pausar, avançar/recuar 0,5 segundo, tocar na imagem e confirmar um ponto manual. A seleção persiste como `AthleteSelection` com tempo, coordenadas normalizadas e confirmação. Isso não é reconhecimento facial nem identidade automática.
+
+Os tipos de análise já reservam `AnalysisEvidence` com `startMs` e `endMs`, `confidence`, `conclusion` (`observado`, `estimado` ou `não determinável`), `origin` (`automático` ou `interpretação`) e `review` (`pendente`, `confirmado`, `corrigido` ou `rejeitado`). A UI omite qualquer conclusão sem evidência temporal. Hoje a engine retorna zero achados. Após a seleção manual, o relatório fica em aguardando confirmação; ao iniciar, seu rastreamento termina como `não disponível`, porque ainda não existe processamento de frames.
 
 ## Engine modular e estado atual
 
@@ -30,6 +32,6 @@ Essa decisão é compatível com a documentação oficial: `expo-video` fornece 
 
 O MVP guarda clipes como marcadores temporais associados ao original. Ele não promete recortar/concatenar fisicamente o arquivo nem gerar uma compilação final, porque isso exige pipeline nativo de mídia testado por codec, rotação, áudio e fabricante.
 
-Não existe ainda modelo local validado para reconhecer ações futebolísticas, movimentação, participação, posição ou identidade do atleta. Não há nuvem configurada. Qualquer futura engine deverá omitir achados sem evidência temporal, declarar incerteza e lidar com distância, ângulo, oclusão, enquadramento, qualidade e atleta não distinguível sem reconhecimento facial.
+A seleção manual funciona no player e permanece corrigível escolhendo outro atleta. Não existe ainda rastreamento contínuo funcional: não há modelo local validado para reconhecer ações futebolísticas, movimentação, participação, posição ou identidade do atleta. Não há nuvem configurada. Qualquer futura engine deverá omitir achados sem evidência temporal, declarar incerteza e lidar com distância, ângulo, oclusão, enquadramento, qualidade e atleta não distinguível sem reconhecimento facial.
 
 A validação final de câmera, codecs, desempenho, cancelamento e armazenamento precisa ser feita em um Android físico/emulador. O Expo Go pode não carregar todos os módulos nativos conforme a configuração do dispositivo; para produção, gerar um development build Android.

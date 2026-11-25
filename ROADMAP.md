@@ -10,6 +10,7 @@
 - [x] Consentimento, privacidade e exclusão com confirmação.
 - [x] Área Análise IA por vídeo/atleta/sessão, com ação explícita, estado, limitações, evidências tipadas e revisão humana preparada.
 - [x] Decisão honesta de indisponibilidade: nenhum resultado automático é fabricado sem modelo e evidência temporal.
+- [x] Seleção manual do atleta no vídeo com pausa, avanço/recuo, toque, marcador visual, confirmação e troca de jogador.
 
 ## Próxima fase — mídia nativa
 
@@ -22,6 +23,7 @@
 ## Futuro — engine de análise local
 
 - [ ] Implementar extração de frames de arquivos gravados em módulo Android nativo, com cancelamento, backpressure e progresso real.
+- [ ] Acompanhar a âncora manual entre frames e pausar quando o jogador ficar oculto, sair do quadro ou houver dúvida; nunca tratar tracking ID como identidade real.
 - [ ] Avaliar um modelo local licenciado e validado para pessoas/objetos e tracking; não assumir que detecção genérica equivale a análise tática.
 - [ ] Definir como o usuário identifica manualmente o atleta sem reconhecimento facial ou biometria.
 - [ ] Só exibir ações, movimentação, participação ou posição quando houver evidência temporal e validação adequada.

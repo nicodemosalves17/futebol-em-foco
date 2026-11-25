@@ -10,6 +10,7 @@ O app foi desenhado para uso por pais e treinadores, inclusive em contextos com 
 - Não há reconhecimento facial, biometria ou identificação automática do atleta.
 - A análise automática só começa após ação explícita do usuário.
 - A engine atual não extrai frames nem produz achados; não existe resultado fictício, confiança inventada ou posição apresentada como fato.
+- A seleção manual guarda apenas uma âncora temporal e coordenadas de toque; ela não identifica biometricamente a pessoa. O acompanhamento automático ainda não é executado.
 - Relatórios ficam ligados ao vídeo, atleta e sessão e podem ser apagados pelo usuário.
 
 Se uma futura engine em nuvem for adicionada, ela deverá ser opt-in, pedir consentimento separado e explicar quais vídeos/frames/metadados serão transmitidos, para qual serviço, por quanto tempo e como revogar a autorização. Isso não existe nesta versão.

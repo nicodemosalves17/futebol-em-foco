@@ -30,13 +30,16 @@ Pressione `a` para abrir no Android. Para gerar o projeto nativo localmente, use
 - Renomear, selecionar e apagar clipes; apagar vídeo com confirmação e dados derivados.
 - Registar observações manuais sobre movimentação, participação e ações com bola.
 - Área **Análise IA** por vídeo, atleta e sessão, iniciada explicitamente pelo usuário.
+- Seleção manual do atleta no vídeo: pausa, avanço/recuo de 0,5 segundo, toque sobre o jogador, marcador visual e confirmação ou escolha de outro jogador. A seleção fica registrada com sua âncora temporal.
 - Relatórios persistentes com estado, progresso, engine, limitações e revisão humana; achados futuros exigirão intervalo temporal, confiança e classificação observado/estimado/não determinável.
-- Cancelamento e processamento não bloqueante estão previstos no contrato da engine; a engine atual retorna indisponibilidade sem analisar frames.
+- Cancelamento e processamento não bloqueante estão previstos no contrato da engine; a engine atual retorna indisponibilidade sem analisar frames. O rastreamento contínuo permanece explicitamente não disponível e nenhum evento é associado quando não há confirmação.
 - Avisos de consentimento e privacidade, sem upload, link público, reconhecimento facial ou biometria.
 
 ## O que a Análise IA faz hoje
 
 Ao tocar em **Iniciar análise**, o app cria um relatório ligado ao vídeo, atleta e sessão corretos e executa a engine local registrada. No MVP atual, essa engine é um adaptador explícito de indisponibilidade: não há modelo local validado, não há extração de frames de arquivos gravados pelo `expo-video` no Android e, portanto, o relatório termina sem achados automáticos. Isso é intencional para não inventar eventos, métricas, posição, talento, potencial, valor futuro ou confiança.
+
+A seleção manual funciona de fato como uma âncora temporal e visual para uma futura engine. O acompanhamento automático ao longo do vídeo e a correção em outro momento ainda não funcionam porque o projeto não extrai frames nem possui tracker nativo.
 
 A pesquisa técnica usou a documentação oficial do [expo-video](https://docs.expo.dev/versions/latest/sdk/video/), do [expo-camera](https://docs.expo.dev/versions/latest/sdk/camera/) e do [ML Kit Object Detection](https://developers.google.com/ml-kit/vision/object-detection/android). O ML Kit consegue processar imagens/frames no dispositivo, mas sua API genérica não fornece análise tática de futebol nem identificação de atleta; integrar isso a vídeos gravados exigirá módulo Android nativo, extração de frames, testes de desempenho e validação de dados.
 

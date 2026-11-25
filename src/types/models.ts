@@ -47,6 +47,16 @@ export type Observation = {
   createdAt: string;
 };
 
+export type AthleteSelection = {
+  selectedAtMs: number;
+  x: number;
+  y: number;
+  videoWidth: number;
+  videoHeight: number;
+  confirmedAt: string;
+};
+
+export type TrackingStatus = 'não iniciado' | 'não disponível' | 'incerto' | 'perdido' | 'confiável';
 export type AnalysisStatus = 'idle' | 'processing' | 'completed' | 'cancelled' | 'failed';
 export type AnalysisConclusion = 'observado' | 'estimado' | 'não determinável';
 export type AnalysisOrigin = 'automático' | 'interpretação';
@@ -81,10 +91,12 @@ export type AnalysisReport = {
   athleteId: string;
   sessionId: string;
   status: AnalysisStatus;
+  trackingStatus: TrackingStatus;
   progress: number;
   engine: string;
   createdAt: string;
   updatedAt: string;
+  selection?: AthleteSelection;
   findings: AnalysisFinding[];
   limitations: string[];
   message?: string;
